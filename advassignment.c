@@ -38,7 +38,7 @@ may define your own functions if required.
 void printmenu(void);
 void printlinkedlist(node_t*);
 int delhead(node_t**);
-int delvowels(node_t*);
+int delvowels(node_t**);
 
 /**********************************************************************
 Main
@@ -99,6 +99,29 @@ this function.
 return 0 - if all vowels were removed successfully
 return 1 - otherwise
 **********************************************************************/
-int delvowels(node_t* head){
+int delvowels(node_t** head){
+	node_t *previous, *current;
 
+	char c = 'a';
+
+	if (*head == NULL) {
+		return 0;
+	}
+
+	if ((*head)->c == c) {
+		return delhead(head);
+	}
+
+	previous = current = (*head)->next;
+	while (current) {
+		if (current->c == c) {
+			previous->next = current->next;
+			free(current);
+			return 1;
+		}
+
+		previous = current;
+		current  = current->next;
+	}
+	return 0;
 }
