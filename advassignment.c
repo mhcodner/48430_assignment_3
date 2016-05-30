@@ -37,14 +37,15 @@ may define your own functions if required.
 **********************************************************************/
 void printmenu(void);
 void printlinkedlist(node_t*);
-int delhead(node_t*);
+int delhead(node_t**);
 int delvowels(node_t*);
 
 /**********************************************************************
 Main
 **********************************************************************/
-/* write the main */
+int main (int argc, char argv[]) {
 
+}
 /**********************************************************************
 Print 2 empty lines followed by the choices menu. Do NOT change this
 function definition.
@@ -78,8 +79,18 @@ ONLY ONE PARAMETER to this function.
 return 0 - if the head of the linked list could be deleted successfully
 return 1 - otherwise
 **********************************************************************/
-int delhead(node_t* head){
-	
+int delhead(node_t** head){
+	node_t * next_node = NULL;
+
+	if (*head == NULL) {
+		return 0;
+	}
+
+	next_node = (*head)->next;
+	free(*head);
+	*head = next_node;
+
+	return 1;
 }
 
 /**********************************************************************
@@ -89,5 +100,5 @@ return 0 - if all vowels were removed successfully
 return 1 - otherwise
 **********************************************************************/
 int delvowels(node_t* head){
-	
+
 }
