@@ -44,7 +44,34 @@ int delvowels(node_t**);
 Main
 **********************************************************************/
 int main (int argc, char argv[]) {
+	if (argc == 1) {
+		printf("Parse a sentence.\n");
+		return 1;
+	}
 
+	node_t * head = NULL;
+	head = malloc(sizeof(node_t));
+	if (head == NULL) {
+		return 1;
+	}
+
+	char choice;
+	do {
+		printmenu();
+		scanf("%c", &choice);
+		switch (choice) {
+			case '1':
+				break;
+			case '2':
+				break;
+			case '3':
+				break;
+			case '4':
+				exit(0);
+			default:
+				continue;
+		}
+	} while (choice != 4);
 }
 /**********************************************************************
 Print 2 empty lines followed by the choices menu. Do NOT change this
