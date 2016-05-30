@@ -63,7 +63,12 @@ format of the executable provided. Pass ONLY ONE PARAMETER to this
 function.
 **********************************************************************/
 void printlinkedlist(node_t* head){
-	
+	node_t * current = head;
+
+	while (current != NULL) {
+		printf("%c\n", current->c);
+		current = current->next;
+	}
 }
 
 
