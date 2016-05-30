@@ -43,34 +43,49 @@ int delvowels(node_t**);
 /**********************************************************************
 Main
 **********************************************************************/
-int main (int argc, char argv[]) {
+int main (int argc, char* argv[]) {
 	if (argc == 1) {
 		printf("Parse a sentence.\n");
 		return 1;
 	}
 
-	node_t * head = NULL;
+	node_t* head = NULL;
 	head = malloc(sizeof(node_t));
 	if (head == NULL) {
 		return 1;
 	}
+	int i, j;
+	node_t* current = head;
+	for (i = 1; i < argc; i++) {
+		for (j = 0; argv[i][j] != '\0'; j++) {
+			current->c = argv[i][j];
+			current->next = malloc(sizeof(node_t));
+			current = current->next;
+		}
+	}
+	current->next = NULL;
 
 	char choice;
 	do {
 		printmenu();
+		printf("Enter your choice>");
 		scanf("%c", &choice);
 		switch (choice) {
 			case '1':
+				printlinkedlist(head);
 				break;
 			case '2':
+				delhead(&head);
 				break;
 			case '3':
 				break;
 			case '4':
 				exit(0);
 			default:
-				continue;
+				printf("Invalid choice.\n");
+				break;
 		}
+		while (getchar() != '\n');
 	} while (choice != 4);
 }
 /**********************************************************************
@@ -94,9 +109,10 @@ void printlinkedlist(node_t* head){
 	node_t * current = head;
 
 	while (current != NULL) {
-		printf("%c\n", current->c);
+		printf("%c", current->c);
 		current = current->next;
 	}
+	printf("\n");
 }
 
 
