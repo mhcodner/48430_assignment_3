@@ -1,7 +1,7 @@
 /**********************************************************************
 48430 Embedded C - Advanced Assignment
-Name:
-Student ID:
+Name: Michael Codner
+Student ID: 11989668
 Date of submission:
 A brief statement on what you could achieve (less than 50 words):
 
@@ -25,17 +25,20 @@ List structs - you may define struct node only.
 Note: end of the list is indicated by a NULL pointer.
 */
 struct node{
-	/* TODO */
+	char c;
+	struct node *next;
 };
+
+typedef struct node node_t;
 
 /**********************************************************************
 Function prototypes - do NOT change the given prototypes. However you
 may define your own functions if required.
 **********************************************************************/
 void printmenu(void);
-void printlinkedlist(/* pass only ONE parameter here */);
-int delhead(/* pass only ONE parameter here */);
-int delvowels(/* pass only ONE parameter here */);
+void printlinkedlist(node_t*);
+int delhead(node_t*);
+int delvowels(node_t*);
 
 /**********************************************************************
 Main
@@ -59,7 +62,7 @@ Print all nodes in a linked list of struct node type. Follow the print
 format of the executable provided. Pass ONLY ONE PARAMETER to this
 function.
 **********************************************************************/
-void printlinkedlist(/* pass only ONE parameter here */){
+void printlinkedlist(node_t* head){
 	
 }
 
@@ -70,7 +73,7 @@ ONLY ONE PARAMETER to this function.
 return 0 - if the head of the linked list could be deleted successfully
 return 1 - otherwise
 **********************************************************************/
-int delhead(/* pass only ONE parameter here */){
+int delhead(node_t* head){
 	
 }
 
@@ -80,6 +83,6 @@ this function.
 return 0 - if all vowels were removed successfully
 return 1 - otherwise
 **********************************************************************/
-int delvowels(/* pass only ONE parameter here */){
+int delvowels(node_t* head){
 	
 }
