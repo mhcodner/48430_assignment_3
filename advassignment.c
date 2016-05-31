@@ -75,10 +75,16 @@ int main (int argc, char* argv[]) {
                 printlinkedlist(head);
                 break;
             case '2':
-                delhead(&head);
+                if (head == NULL)
+                    printf("Pop failed.\n");
+                else
+                    delhead(&head);
                 break;
             case '3':
-                delvowels(&head);
+                if (head == NULL)
+                    printf("Del failed.\n");
+                else
+                    delvowels(&head);
                 break;
             case '4':
                 exit(0);
@@ -146,8 +152,8 @@ return 1 - otherwise
 int delvowels(node_t** head){
     char vowels[] = "aeiouAEIOU";
 
-    int i;
-    for (i = 0; i < 10; i++) {
+    int i, vowelsRemoved;
+    for (i = 0, vowelsRemoved = 0; i < 10; i++) {
         /*Store head node*/
         node_t* temp = *head, *prev;
         char key = vowels[i];
@@ -157,6 +163,7 @@ int delvowels(node_t** head){
             *head = temp->next;   /* Changed head*/
             free(temp);           /* free old head*/
             temp = *head;         /* Change Temp*/
+            vowelsRemoved++;
         }
 
         /* Delete occurrences other than head*/
@@ -181,8 +188,9 @@ int delvowels(node_t** head){
 
             /* Update Temp for next iteration of outer loop*/
             temp = prev->next;
+            vowelsRemoved++;
         }
     }
 
-    return 1;
+    return (vowelsRemoved > 0);
 }
