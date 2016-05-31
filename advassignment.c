@@ -19,14 +19,14 @@ List structs - you may define struct node only.
 #include <stdio.h>
 
 /* struct node - contains
-	c - a char to store an input character
-	next - pointer to the next struct node or NULL (this pointer can be
-	       used to construct the linked list)
+    c - a char to store an input character
+    next - pointer to the next struct node or NULL (this pointer can be
+           used to construct the linked list)
 Note: end of the list is indicated by a NULL pointer.
 */
 struct node{
-	char c;
-	struct node *next;
+    char c;
+    struct node *next;
 };
 
 typedef struct node node_t;
@@ -44,60 +44,60 @@ int delvowels(node_t**);
 Main
 **********************************************************************/
 int main (int argc, char* argv[]) {
-	if (argc == 1) {
-		printf("Parse a sentence.\n");
-		return 1;
-	}
+    if (argc == 1) {
+        printf("Parse a sentence.\n");
+        return 1;
+    }
 
-	node_t* head = NULL;
-	head = malloc(sizeof(node_t));
-	if (head == NULL) {
-		return 1;
-	}
-	int i, j;
-	node_t* current = head;
-	for (i = 1; i < argc; i++) {
-		for (j = 0; argv[i][j] != '\0'; j++) {
-			current->c = argv[i][j];
-			current->next = malloc(sizeof(node_t));
-			current = current->next;
-		}
-	}
-	current->next = NULL;
+    node_t* head = NULL;
+    head = malloc(sizeof(node_t));
+    if (head == NULL) {
+        return 1;
+    }
+    int i, j;
+    node_t* current = head;
+    for (i = 1; i < argc; i++) {
+        for (j = 0; argv[i][j] != '\0'; j++) {
+            current->c = argv[i][j];
+            current->next = malloc(sizeof(node_t));
+            current = current->next;
+        }
+    }
+    current->next = NULL;
 
-	char choice;
-	do {
-		printmenu();
-		printf("Enter your choice>");
-		scanf("%c", &choice);
-		switch (choice) {
-			case '1':
-				printlinkedlist(head);
-				break;
-			case '2':
-				delhead(&head);
-				break;
-			case '3':
-				break;
-			case '4':
-				exit(0);
-			default:
-				printf("Invalid choice.\n");
-				break;
-		}
-		while (getchar() != '\n');
-	} while (choice != 4);
+    char choice;
+    do {
+        printmenu();
+        printf("Enter your choice>");
+        scanf("%c", &choice);
+        switch (choice) {
+            case '1':
+                printlinkedlist(head);
+                break;
+            case '2':
+                delhead(&head);
+                break;
+            case '3':
+                break;
+            case '4':
+                exit(0);
+            default:
+                printf("Invalid choice.\n");
+                break;
+        }
+        while (getchar() != '\n');
+    } while (choice != 4);
 }
 /**********************************************************************
 Print 2 empty lines followed by the choices menu. Do NOT change this
 function definition.
 **********************************************************************/
 void printmenu(void){
-	printf("\n\n"
-		"1. print input arguments (no spaces)\n"
-		"2. remove first character\n"
-		"3. remove vowels\n"
-		"4. exit program\n");
+    printf("\n\n"
+        "1. print input arguments (no spaces)\n"
+        "2. remove first character\n"
+        "3. remove vowels\n"
+        "4. exit program\n");
 }
 
 /**********************************************************************
@@ -106,13 +106,13 @@ format of the executable provided. Pass ONLY ONE PARAMETER to this
 function.
 **********************************************************************/
 void printlinkedlist(node_t* head){
-	node_t * current = head;
+    node_t * current = head;
 
-	while (current != NULL) {
-		printf("%c", current->c);
-		current = current->next;
-	}
-	printf("\n");
+    while (current != NULL) {
+        printf("%c", current->c);
+        current = current->next;
+    }
+    printf("\n");
 }
 
 
@@ -123,17 +123,17 @@ return 0 - if the head of the linked list could be deleted successfully
 return 1 - otherwise
 **********************************************************************/
 int delhead(node_t** head){
-	node_t * next_node = NULL;
+    node_t * next_node = NULL;
 
-	if (*head == NULL) {
-		return 0;
-	}
+    if (*head == NULL) {
+        return 0;
+    }
 
-	next_node = (*head)->next;
-	free(*head);
-	*head = next_node;
+    next_node = (*head)->next;
+    free(*head);
+    *head = next_node;
 
-	return 1;
+    return 1;
 }
 
 /**********************************************************************
@@ -143,28 +143,28 @@ return 0 - if all vowels were removed successfully
 return 1 - otherwise
 **********************************************************************/
 int delvowels(node_t** head){
-	node_t *previous, *current;
+    node_t *previous, *current;
 
-	char c = 'a';
+    char c = 'a';
 
-	if (*head == NULL) {
-		return 0;
-	}
+    if (*head == NULL) {
+        return 0;
+    }
 
-	if ((*head)->c == c) {
-		return delhead(head);
-	}
+    if ((*head)->c == c) {
+        return delhead(head);
+    }
 
-	previous = current = (*head)->next;
-	while (current) {
-		if (current->c == c) {
-			previous->next = current->next;
-			free(current);
-			return 1;
-		}
+    previous = current = (*head)->next;
+    while (current) {
+        if (current->c == c) {
+            previous->next = current->next;
+            free(current);
+            return 1;
+        }
 
-		previous = current;
-		current  = current->next;
-	}
-	return 0;
+        previous = current;
+        current  = current->next;
+    }
+    return 0;
 }
