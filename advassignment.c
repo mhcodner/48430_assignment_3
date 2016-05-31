@@ -78,6 +78,7 @@ int main (int argc, char* argv[]) {
                 delhead(&head);
                 break;
             case '3':
+                delvowels(&head);
                 break;
             case '4':
                 exit(0);
@@ -143,28 +144,45 @@ return 0 - if all vowels were removed successfully
 return 1 - otherwise
 **********************************************************************/
 int delvowels(node_t** head){
-    node_t *previous, *current;
+    char vowels[] = "aeiouAEIOU";
 
-    char c = 'a';
-
-    if (*head == NULL) {
-        return 0;
-    }
-
-    if ((*head)->c == c) {
-        return delhead(head);
-    }
-
-    previous = current = (*head)->next;
-    while (current) {
-        if (current->c == c) {
-            previous->next = current->next;
-            free(current);
-            return 1;
+    int i;
+    for (i = 0; i < 10; i++) {
+        /*Store head node*/
+        node_t* temp = *head, *prev;
+        char key = vowels[i];
+        /* If head node itself holds the key or multiple occurrences of key*/
+        while (temp != NULL && temp->c == key)
+        {
+            *head = temp->next;   /* Changed head*/
+            free(temp);           /* free old head*/
+            temp = *head;         /* Change Temp*/
         }
 
-        previous = current;
-        current  = current->next;
+        /* Delete occurrences other than head*/
+        while (temp != NULL)
+        {
+            /* Search for the key to be deleted, keep track of the
+             previous node as we need to change 'prev->next'
+             */
+            while (temp != NULL && temp->c != key)
+            {
+                prev = temp;
+                temp = temp->next;
+            }
+
+            /* If key was not present in linked list*/
+            if (temp == NULL) continue;
+
+            /* Unlink the node from linked list*/
+            prev->next = temp->next;
+
+            free(temp);  /* Free memory*/
+
+            /* Update Temp for next iteration of outer loop*/
+            temp = prev->next;
+        }
     }
-    return 0;
+
+    return 1;
 }
