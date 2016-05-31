@@ -45,7 +45,7 @@ Main
 **********************************************************************/
 int main (int argc, char* argv[]) {
     if (argc == 1) { /* The first argument is always the name of the program */
-        printf("Parse a sentence.\n");
+        printf("Parse a sentence");
         return 1; /* Exit the program with status of 1 (error) if there were no arguments */
     }
 
