@@ -60,8 +60,9 @@ int main (int argc, char* argv[]) {
         for (j = 0; argv[i][j] != '\0'; j++) { /* Loop over each character in each word */
             current->c = argv[i][j]; /* Add the character to the linked list */
             current->next = malloc(sizeof(node_t)); /* Allocate memory for the next item */
-            current = current->next; /* Set current to the pointer for the next item so that we continue
-                                      * adding to the list instead of changing the same item */
+            if (argv[i][j+1] != '\0')
+                current = current->next; /* Set current to the pointer for the next item so that we continue
+                                          * adding to the list instead of changing the same item */
         }
     }
     current->next = NULL; /* Signify the end of the list with a NULL pointer */
