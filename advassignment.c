@@ -95,6 +95,8 @@ int main (int argc, char* argv[]) {
         }
         while (getchar() != '\n'); /* Clear extra characters from input stream */
     } while (choice != 4);
+
+    return 0;
 }
 /**********************************************************************
 Print 2 empty lines followed by the choices menu. Do NOT change this
