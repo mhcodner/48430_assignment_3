@@ -70,7 +70,7 @@ int main (int argc, char* argv[]) {
     do {
         printmenu();
         printf("Enter your choice>");
-        scanf("%c", &choice); /* Read in a character to the choice variable */
+        scanf("%1[^\n]", &choice); /* Read in a character to the choice variable */
         switch (choice) {
             case '1':
                 printlinkedlist(head);
