@@ -138,14 +138,14 @@ int delhead(node_t** head){
     node_t* next_node = NULL; /* Initalise the temporary new head with NULL */
 
     if (*head == NULL) { /* Can't remove the first element from an empty list */
-        return 0;
+        return 1;
     }
 
     next_node = (*head)->next; /* Set our temporary new head to the value of the second item */
     free(*head); /* Free the memory for the initial head */
     *head = next_node; /* Set the head to our temporary head */
 
-    return 1;
+    return 0;
 }
 
 /**********************************************************************
